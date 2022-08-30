@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./static/styles.css" />
+  </head>
+  <body>
+    <body>
+      <h1>Get Song Key</h1>
+      <form method="POST">
+        <div class="form__fieldset">
+          <label for="track" class="form__label">Track URL:</label>
+          <input type="text" name="trURL" id="trackURL" class="form__input" />
+        </div>
+
+        <div class="form__fieldset">
+          <input
+            class="form__submit form__input"
+            type="submit"
+            value="get key"
+          />
+        </div>
+      </form>
+      <div>
+        <a href="/playlist">Get playlist keys</a>
+      </div>
+      <script src="./static/index.js"></script>
+    </body>
+  </body>
+</html>
