@@ -2,9 +2,16 @@ from operator import itemgetter
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 # Authentication - without user
-client_credentials_manager = SpotifyClientCredentials(client_id="9e3f892d7dd94729890ea0f75d2c98ad",
-                                                      client_secret="4c2f340af3eb419c8f2de61d7bedae8f")
+CLIENT_ID = os.getenv('CLIENT_ID')
+CLIENT_SECRET = os.getenv('CLIENT_SECRET')
+
+client_credentials_manager = SpotifyClientCredentials(client_id= CLIENT_ID,
+                                                      client_secret= CLIENT_SECRET)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # test playlist
