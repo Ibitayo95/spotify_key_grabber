@@ -10,14 +10,15 @@ load_dotenv()
 CLIENT_ID = os.getenv('CLIENT_ID')
 CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 
-client_credentials_manager = SpotifyClientCredentials(client_id= CLIENT_ID,
-                                                      client_secret= CLIENT_SECRET)
+client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID,
+                                                      client_secret=CLIENT_SECRET)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # test playlist
 playlist_link = "https://open.spotify.com/playlist/37i9dQZEVXbNG2KDcFcKOF?si=1333723a6eff4b7f"
 playlist_URI = playlist_link.split("/")[-1].split("?")[0]
-track_uris = [x["track"]["uri"] for x in sp.playlist_items(playlist_URI)["items"]]
+track_uris = [x["track"]["uri"]
+              for x in sp.playlist_items(playlist_URI)["items"]]
 
 # mapping for song key
 key_dict = {
@@ -36,7 +37,8 @@ key_dict = {
     11: "B"
 }
 
-playlist = sp.playlist(playlist_id="37i9dQZEVXbNG2KDcFcKOF?si=1333723a6eff4b7f", fields="name")
+playlist = sp.playlist(
+    playlist_id="37i9dQZEVXbNG2KDcFcKOF?si=1333723a6eff4b7f", fields="name")
 # print("Songs taken from playlist: " + playlist["name"])
 
 # for track in sp.playlist_items(playlist_URI)["items"]:
@@ -56,10 +58,10 @@ playlist = sp.playlist(playlist_id="37i9dQZEVXbNG2KDcFcKOF?si=1333723a6eff4b7f",
 #     # Popularity of the track
 #     track_pop = track["track"]["popularity"]
 
-    # The key of the track
-    # track_key_raw = sp.audio_features(track_uri)[0]['key']
-    # track_key_conversion = key_dict[track_key_raw]
-    
+# The key of the track
+# track_key_raw = sp.audio_features(track_uri)[0]['key']
+# track_key_conversion = key_dict[track_key_raw]
+
 
 def get_song_key(input_uri):
     artist_name = sp.track(input_uri)["artists"][0]["name"]
@@ -71,11 +73,16 @@ def get_song_key(input_uri):
     return list
 
 
+def get_album_art(input_uri):
+    url = sp.track(input_uri)['album']['images'][0]['url']
+    return url
+
+
 def get_playlist_uri(playlist_link):
     playlist_URI = playlist_link.split("/")[-1].split("?")[0]
     return playlist_URI
 
-    
+
 def get_playlist_name(playlist_link):
     uri = get_playlist_uri(playlist_link)
     playlist = sp.playlist(playlist_id=uri, fields="name")
@@ -93,5 +100,3 @@ def get_playlist_keys(playlist_link):
         details_list = [artist, tr, key]
         all_songs.append(details_list)
     return sorted(all_songs, key=itemgetter(2))
-
-
