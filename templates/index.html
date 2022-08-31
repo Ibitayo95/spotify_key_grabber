@@ -5,29 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./static/styles.css" />
+    <link rel="stylesheet" href={{url_for('static', filename='styles.css')}}/>
   </head>
   <body>
     <body>
+      <div>
+        <a class="playlistLink" href="/playlist">Get playlist keys</a>
+      </div>
+      <div>
+        <img
+          class="logo"
+          src="/static/images/music_notes.png"
+          alt="a musical note"
+          srcset=""
+        />
+      </div>
       <h1>Get Song Key</h1>
       <form method="POST">
         <div class="form__fieldset">
           <label for="track" class="form__label">Track URL:</label>
-          <input type="text" name="trURL" id="trackURL" class="form__input" />
+          <input
+            type="text"
+            name="trURL"
+            id="trackURL"
+            class="form__input"
+            placeholder="place spotify link here"
+          />
         </div>
 
         <div class="form__fieldset">
           <input
-            class="form__submit form__input"
+            class="form__submit_form__input"
             type="submit"
             value="get key"
           />
         </div>
       </form>
-      <div>
-        <a href="/playlist">Get playlist keys</a>
-      </div>
-      <script src="./static/index.js"></script>
+
+      <script src="{{ url_for('static',filename='index.js') }}"></script>
     </body>
   </body>
 </html>
