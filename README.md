@@ -15,4 +15,6 @@ additional features i want to add:
 - after searching for a song: display other popular songs that i may like that are in the same key (would require using more specific data) (hot)
 
 command:
-flask run
+`flask run`
+![example](static/images/example1.png)
+![example](static/images/example2.png)
